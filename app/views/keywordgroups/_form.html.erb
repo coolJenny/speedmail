@@ -1,0 +1,17 @@
+<%= form_with(model: keywordgroup, local: true) do |form| %>
+  <% if keywordgroup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(keywordgroup.errors.count, "error") %> prohibited this keywordgroup from being saved:</h2>
+
+      <ul>
+      <% keywordgroup.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

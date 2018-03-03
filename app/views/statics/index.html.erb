@@ -1,0 +1,73 @@
+<% provide(:title, "Home") %>
+<div class="container home">
+  <%= render('/statics/header') %>
+  <div class="col-md-12" style="margin: 150px 100px 200px 100px;">
+    <% if user_signed_in? %>
+      <a href="<%= keywordgroups_path %>" class="btn btn-primary">Go to My Dashboard</a>
+    <% else %>
+      <a href="<%= new_user_registration_path %>" class="btn btn-primary">Create an account</a>
+    <% end %>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-2">
+      <div class="thumbnail">
+        <a href="/w3images/lights.jpg">
+          <img src="/assets/images/1.jpg" alt="Lights" style="width:100%">
+          <div class="caption">
+            <p>SECURE FILE UPLOADING</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail">
+        <a href="/w3images/nature.jpg">
+          <img src="/assets/images/2.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>FULL COLOR PRINTING</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail">
+        <a href="/w3images/fjords.jpg">
+          <img src="/assets/images/3.jpg" alt="Fjords" style="width:100%">
+          <div class="caption">
+            <p>MAIL PROCESSING</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail">
+        <a href="/w3images/lights.jpg">
+          <img src="/assets/images/4.jpg" alt="Lights" style="width:100%">
+          <div class="caption">
+            <p>AGENT ACCESS</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail">
+        <a href="/w3images/nature.jpg">
+          <img src="/assets/images/5.jpg" alt="Nature" style="width:100%">
+          <div class="caption">
+            <p>E-BILL</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="thumbnail">
+        <a href="/w3images/fjords.jpg">
+          <img src="/assets/images/6.jpg" alt="Fjords" style="width:100%">
+          <div class="caption">
+            <p>CERTIFIED READ</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>  
+</div>
