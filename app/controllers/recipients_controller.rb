@@ -25,16 +25,27 @@ class RecipientsController < ApplicationController
   # POST /recipients.json
   def create
     @recipient = Recipient.new(recipient_params)
+    @keywordgroup = Keywordgroup.create!(user_id: current_user.id)
+    @recipient.keywordgroup_id = @keywordgroup.id
 
-    respond_to do |format|
-      if @recipient.save
-        format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
-        format.json { render :show, status: :created, location: @recipient }
-      else
-        format.html { render :new }
-        format.json { render json: @recipient.errors, status: :unprocessable_entity }
-      end
-    end
+    if @recipient.save
+      flash[:notice] = "Recipient was successfully created."
+      redirect_to edit_keywordgroup_path @keywordgroup
+    else
+      flash[:error] = "Recipient creation was failed."
+      redirect_to new_keywordgroup_path
+    end    
+    # @recipient = Recipient.new(recipient_params)
+
+    # respond_to do |format|
+    #   if @recipient.save
+    #     format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
+    #     format.json { render :show, status: :created, location: @recipient }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @recipient.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /recipients/1
@@ -69,6 +80,7 @@ class RecipientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipient_params
-      params.fetch(:recipient, {})
+      # params.fetch(:recipient, {})
+      params.require(:recipient).permit(:recipient_name, :email, :cc_state, :keywordgroup_id)
     end
 end

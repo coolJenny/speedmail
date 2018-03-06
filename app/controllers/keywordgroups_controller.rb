@@ -20,6 +20,7 @@ class KeywordgroupsController < ApplicationController
   # GET /keywordgroups/1/edit
   def edit
     @keywords = Keyword.where(keywordgroup_id: @keywordgroup.id)
+    @recipients = Recipient.where(keywordgroup_id: @keywordgroup.id)
   end
 
   # POST /keywordgroups
@@ -75,16 +76,38 @@ class KeywordgroupsController < ApplicationController
   # PATCH/PUT /keywordgroups/1
   # PATCH/PUT /keywordgroups/1.json
   def update
-    @keyword = Keyword.new
-    @keyword.keyword_name = params[:keyword_name]
-    @keyword.keywordgroup_id = @keywordgroup.id
     
-    if @keyword.save
-      flash[:notice] = 'New keyword was successfylly added.'
-      redirect_back(fallback_location: root_path)
-    else
-      flash[:error] = 'New keyword creation was failed.'
-      redirect_back(fallback_location: root_path)
+    if params[:action_info] == 'keyword'
+      if Keyword.where(keywordgroup_id: @keywordgroup.id).count < 4
+        @keyword = Keyword.new
+        @keyword.keyword_name = params[:keyword_name]
+        @keyword.keywordgroup_id = @keywordgroup.id
+
+        if @keyword.save
+          flash[:notice] = 'New keyword was successfylly added.'
+          redirect_back(fallback_location: root_path)
+        else
+          flash[:error] = 'New keyword creation was failed.'
+          redirect_back(fallback_location: root_path)
+        end
+      else
+        flash[:error] = "Sorry. You can't create a new keyword. You can only create maximum 4 keywords."
+        redirect_back(fallback_location: root_path)
+      end
+    elsif params[:action_info] == 'recipient'
+      @recipient = Recipient.new
+      @recipient.recipient_name = params[:recipient_name]
+      @recipient.email = params[:email]
+      @recipient.cc_state = params[:cc_state]
+      @recipient.keywordgroup_id = @keywordgroup.id
+
+      if @recipient.save
+        flash[:notice] = 'New recipient was successfully added.'
+        redirect_back(fallback_location: root_path)
+      else
+        flash[:error] = 'New recipient creation was failed.'
+        redirect_back(fallback_location: root_path)
+      end
     end
 
     # respond_to do |format|
@@ -100,14 +123,22 @@ class KeywordgroupsController < ApplicationController
 
   # DELETE /keywordgroups/1
   # DELETE /keywordgroups/1.json
-  def destroy
-    @keywordgroup.destroy
+  def destroy    
+
     @keywords = Keyword.where(keywordgroup_id: @keywordgroup.id)
     @keywords.each do |keyword|
       keyword.destroy
     end
+
+    @recipients = Recipient.where(keywordgroup_id: @keywordgroup.id)
+    @recipients.each do |recipient|
+      recipient.destroy
+    end
+
+    @keywordgroup.destroy
+    
     respond_to do |format|
-      format.html { redirect_to keywordgroups_url, notice: 'Keywordgroup was successfully destroyed.' }
+      format.html { redirect_to keywordgroups_url, notice: 'Keywordgroup was successfully deleted.' }
       format.json { head :no_content }
     end
   end
