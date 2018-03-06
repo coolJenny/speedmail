@@ -16,7 +16,7 @@
 						<% end %>
 					</div>
 					<div class="form-inline col-md-6 add-tag" style="margin: 10px 0;">
-						<%= form_with(model: keywordgroup, local: true) do |f| %>
+						<%= form_for @keywordgroup do |f| %>
 							<%= hidden_field_tag 'action_info', 'keyword' %>
 							<label class="col-md-3" style="padding: 0">Add/Edit Keyword</label>
 							<input type="text" name="keyword_val" class="form-control keyword_val" autofocus="true" placeholder="type your keyword..." required="true">

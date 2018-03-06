@@ -27,25 +27,25 @@
             <% @keyword_num = @keywords.count %>
             <% if @keyword_num == 1 %>
               <% @keywords.each do |keyword| %>
-                <td><% keyword.keyword_name %></td>
+                <td><%= keyword.keyword_name %></td>
               <% end %>
               <td></td>
               <td></td>
               <td></td>
             <% elsif @keyword_num == 2 %>
               <% @keywords.each do |keyword| %>
-                <td><% keyword.keyword_name %></td>
+                <td><%= keyword.keyword_name %></td>
               <% end %>
               <td></td>
               <td></td>
             <% elsif @keyword_num == 3 %>
               <% @keywords.each do |keyword| %>
-                <td><% keyword.keyword_name %></td>
+                <td><%= keyword.keyword_name %></td>
               <% end %>
               <td></td>
             <% elsif @keyword_num == 4 %>
               <% @keywords.each do |keyword| %>
-                <td><% keyword.keyword_name %></td>
+                <td><%= keyword.keyword_name %></td>
               <% end %>
             <% else %>
               <td></td>
@@ -55,7 +55,7 @@
             <% end %>
             <td><%= @recipient_num %></td>
             <td class="deleterow edit"><%= link_to 'Edit', edit_keywordgroup_path(keywordgroup) %></td>
-            <td class="deleterow delete"><%= link_to 'Delete', keywordgroup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="deleterow delete"><%= link_to 'Delete', keywordgroup, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></td>
           </tr>
           <% end %>
         </tbody>

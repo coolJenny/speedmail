@@ -10,31 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180303171455) do
+ActiveRecord::Schema.define(version: 20180305071102) do
 
-  create_table "keywordgroups", force: :cascade do |t|
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "keywordgroups", force: :cascade do |t|
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_keywordgroups_on_user_id"
   end
 
   create_table "keywords", force: :cascade do |t|
+    t.string "keyword_name"
+    t.integer "keywordgroup_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "keywordgroup_id"
-    t.string "keyword_name"
     t.index ["keywordgroup_id"], name: "index_keywords_on_keywordgroup_id"
   end
 
   create_table "recipients", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "keywordgroup_id"
     t.string "recipient_name"
     t.string "email"
     t.boolean "cc_state"
+    t.integer "keywordgroup_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["keywordgroup_id"], name: "index_recipients_on_keywordgroup_id"
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string "name"
+    t.boolean "order_state"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

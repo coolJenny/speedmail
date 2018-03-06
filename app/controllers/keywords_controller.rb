@@ -25,23 +25,33 @@ class KeywordsController < ApplicationController
   # POST /keywords.json
   def create
     @keyword = Keyword.new(keyword_params)
+    @keywordgroup = Keywordgroup.create!(user_id: current_user.id)
+    @keyword.keywordgroup_id = @keywordgroup.id
 
-    respond_to do |format|
-      if @keyword.save
-        format.html { redirect_to @keyword, notice: 'Keyword was successfully created.' }
-        format.json { render :show, status: :created, location: @keyword }
-      else
-        format.html { render :new }
-        format.json { render json: @keyword.errors, status: :unprocessable_entity }
-      end
+    if @keyword.save
+      flash[:notice] = "Keyword was successfully created."
+      redirect_to edit_keywordgroup_path @keywordgroup
+    else
+      flash[:error] = "Keyword creation was failed."
+      redirect_to new_keywordgroup_path
     end
+
+    # respond_to do |format|
+    #   if @keyword.save
+    #     format.html { redirect_to edit_keywordgroup_path @keywordgroup.id, notice: "Keyword was successfully created. #{@keyword.errors.full_messages}" }
+    #     format.json { render :show, status: :created, location: @keyword }
+    #   else
+    #     format.html { redirect_to  new_keywordgroup_path}
+    #     format.json { render json: @keyword.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /keywords/1
   # PATCH/PUT /keywords/1.json
   def update
     respond_to do |format|
-      if @keyword.update(keyword_params)
+      if @keyword.update(params)
         format.html { redirect_to @keyword, notice: 'Keyword was successfully updated.' }
         format.json { render :show, status: :ok, location: @keyword }
       else
@@ -69,6 +79,8 @@ class KeywordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def keyword_params
-      params.fetch(:keyword, {})
+      # params.fetch(:keyword, {})
+      params.require(:keyword).permit(:keyword_name, :keywordgroup_id)
+      # params.fetch(:keyword, {}).permit(:keyword_name)
     end
 end
