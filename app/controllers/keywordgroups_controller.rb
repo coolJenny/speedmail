@@ -4,7 +4,7 @@ class KeywordgroupsController < ApplicationController
   # GET /keywordgroups
   # GET /keywordgroups.json
   def index
-    @keywordgroups = current_user.keywordgroups
+    @keywordgroups = Keywordgroup.all
   end
 
   # GET /keywordgroups/1
