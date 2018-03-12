@@ -19,45 +19,48 @@
           </tr>
         </thead>
         <tbody>
-          <% @keywordgroups.each_with_index do |keywordgroup, index| %>
-          <tr>
-            <td><%= index+1 %></td>
-            <% @recipient_num = Recipient.where(keywordgroup_id: keywordgroup.id).count %>
-            <% @keywords = Keyword.where(keywordgroup_id: keywordgroup.id) %>
-            <% @keyword_num = @keywords.count %>
-            <% if @keyword_num == 1 %>
-              <% @keywords.each do |keyword| %>
-                <td><%= keyword.keyword_name %></td>
+          <% unless @keywordgroups.nil? %>
+            <% @keywordgroups.each_with_index do |keywordgroup, index| %>
+            <tr>
+              <td><%= index+1 %></td>
+              <% @recipient_num = Recipient.where(keywordgroup_id: keywordgroup.id).count %>
+              <% @keywords = Keyword.where(keywordgroup_id: keywordgroup.id) %>
+              <% @keyword_num = @keywords.count %>
+              <% if @keyword_num == 1 %>
+                <% @keywords.each do |keyword| %>
+                  <td><%= keyword.keyword_name %></td>
+                <% end %>
+                <td></td>
+                <td></td>
+                <td></td>
+              <% elsif @keyword_num == 2 %>
+                <% @keywords.each do |keyword| %>
+                  <td><%= keyword.keyword_name %></td>
+                <% end %>
+                <td></td>
+                <td></td>
+              <% elsif @keyword_num == 3 %>
+                <% @keywords.each do |keyword| %>
+                  <td><%= keyword.keyword_name %></td>
+                <% end %>
+                <td></td>
+              <% elsif @keyword_num == 4 %>
+                <% @keywords.each do |keyword| %>
+                  <td><%= keyword.keyword_name %></td>
+                <% end %>
+              <% else %>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               <% end %>
-              <td></td>
-              <td></td>
-              <td></td>
-            <% elsif @keyword_num == 2 %>
-              <% @keywords.each do |keyword| %>
-                <td><%= keyword.keyword_name %></td>
-              <% end %>
-              <td></td>
-              <td></td>
-            <% elsif @keyword_num == 3 %>
-              <% @keywords.each do |keyword| %>
-                <td><%= keyword.keyword_name %></td>
-              <% end %>
-              <td></td>
-            <% elsif @keyword_num == 4 %>
-              <% @keywords.each do |keyword| %>
-                <td><%= keyword.keyword_name %></td>
-              <% end %>
-            <% else %>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td><%= @recipient_num %></td>
+              <td class="deleterow edit"><%= link_to 'Edit', edit_keywordgroup_path(keywordgroup) %></td>
+              <td class="deleterow delete"><%= link_to 'Delete', keywordgroup, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></td>
+            </tr>
             <% end %>
-            <td><%= @recipient_num %></td>
-            <td class="deleterow edit"><%= link_to 'Edit', edit_keywordgroup_path(keywordgroup) %></td>
-            <td class="deleterow delete"><%= link_to 'Delete', keywordgroup, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></td>
-          </tr>
           <% end %>
+          
         </tbody>
       </table>
     </div>
