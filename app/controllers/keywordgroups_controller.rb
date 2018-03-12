@@ -4,7 +4,7 @@ class KeywordgroupsController < ApplicationController
   # GET /keywordgroups
   # GET /keywordgroups.json
   def index
-    @keywordgroups = current_user.keywordgroups
+    @keywordgroups = Keywordgroup.where(user_id: current_user.id)
   end
 
   # GET /keywordgroups/1
