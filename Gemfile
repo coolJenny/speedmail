@@ -36,6 +36,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'koala'
+
 gem 'jquery-datatables'
 
 group :development, :test do
