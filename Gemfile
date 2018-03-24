@@ -40,7 +40,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
-gem 'koala'
+# gem 'koala'
+gem 'activerecord-session_store'
 
 gem 'jquery-datatables'
 
@@ -50,6 +51,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'dotenv'
 end
 
 group :development do
