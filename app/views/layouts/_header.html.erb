@@ -17,7 +17,17 @@
 				<ul class="nav navbar-nav navbar-right">
 					<% if user_signed_in? %>
 						<li class="<%= active_class(keywordgroups_path) %>"><%= link_to "My Dashboard", keywordgroups_path %></li>
-						<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+						<li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Account
+                <span class="caret"></span>
+            </a>
+              <ul class="dropdown-content">
+                <li><%= link_to '<span class="glyphicon glyphicon-user"></span> Profile'.html_safe, user_path(current_user) %></li>
+                <li><%= link_to '<span class="glyphicon glyphicon-edit"></span> Update'.html_safe, edit_user_path(current_user) %></li>
+                <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> Log out'.html_safe, destroy_user_session_path, :method => :delete %></li>
+                <li><%= link_to '<span class="glyphicon glyphicon-remove"></span> Delete'.html_safe, user_path(current_user), :method => :delete, 'data-confirm': 'Are you sure?' %></li>
+              </ul>
+            </li>
 					<% else %>						
 						<li class="<%= active_class(new_user_session_path) %>"><%= link_to "Sign in", new_user_session_path, :class => 'sign' %></li>
 						<li><%= link_to "Create an account", new_user_registration_path, :class => 'btn btn-primary create' %></li>		
