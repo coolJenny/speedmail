@@ -14,20 +14,16 @@
 					<li class="<%= active_class(root_url) %>"><%= link_to "Home", root_url %></li>
 					<li class="<%= active_class(contact_us_path) %>"><%= link_to "Contact Us", contact_us_path %></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right">					
 					<% if user_signed_in? %>
-						<li class="<%= active_class(keywordgroups_path) %>"><%= link_to "My Dashboard", keywordgroups_path %></li>
-						<li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> Log out'.html_safe, destroy_user_session_path, :method => :delete %></li>
-						<li><a><span class="glyphicon glyphicon-user"></span> <%= current_user.name %></a></li>
-						<!-- <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Account
-                <span class="caret"></span>
-            	</a>
-              <ul class="dropdown-content">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span><%= current_user.name %></a></li>
-                <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> Log out'.html_safe, destroy_user_session_path, :method => :delete %></li>
-              </ul>
-            </li> -->
+						<li class="<%= active_class(keywordgroups_path) %>"><%= link_to "Dashboard", keywordgroups_path %></li>
+						<li class="w3-dropdown-hover">
+						    <a class="w3-button" href="#">Profile<span class="caret"></span></a>
+						    <div class="w3-dropdown-content w3-bar-block w3-border">
+						    	<a class="w3-bar-item w3-button"><span class="glyphicon glyphicon-edit"></span> <%= current_user.name %></a>
+						    	<%= link_to '<span class="glyphicon glyphicon-log-out"></span> Log out'.html_safe, destroy_user_session_path, :method => :delete, class: 'w3-bar-item w3-button' %>
+						    </div>
+						</li>												
 					<% else %>						
 						<li class="<%= active_class(new_user_session_path) %>"><%= link_to "Sign in", new_user_session_path, :class => 'sign' %></li>
 						<li><%= link_to "Create an account", new_user_registration_path, :class => 'btn btn-primary create' %></li>		
