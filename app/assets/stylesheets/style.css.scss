@@ -14,6 +14,35 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+.parallax2 section{
+	background-color: rgba(255,255,255,1);
+}
+.parallax3 {
+    background-image: url(/assets/img_parallax3.jpg);
+    height: 1500px; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parallax3 section{
+	background-color: rgba(255,255,255,.8);
+}
+.parallax4{
+	background-image: url(/assets/img_parallax4.jpg);
+    height: 1500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parallax4 section{
+	background-color: rgba(255,255,255,.8);
+}
+.explaination{
+	background-color: rgba(39, 79, 145, .9);
+	height: 250px;
+}
 .banner a:hover{
 	background-color: rgba(255,255,255,0) !important;
 }
@@ -265,4 +294,10 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
 	&:hover{
 		background-color: white !important;
 	}
+}
+
+footer{
+	background-color: rgb(23, 24, 28);
+	color: rgba(255,255,255,1);
+	height: 300px;
 }
