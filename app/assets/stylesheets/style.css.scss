@@ -1,7 +1,47 @@
+.banner a:hover{
+	background-color: rgba(255,255,255,0) !important;
+}
+.banner img{
+	width: 100%;	
+}
+
+.navbar-brand {
+    font-size: 24px;
+}
+
+.navbar-container {
+    padding: 20px 0 20px 0;
+}
+
+.navbar.navbar-fixed-top.fixed-theme {
+    border-color: #080808;
+    box-shadow: 0 0 5px rgba(0,0,0,.8);
+}
+
+.navbar-brand.fixed-theme {
+    font-size: 18px;
+}
+
+.navbar-container.fixed-theme {
+    padding: 0;
+}
+
+.navbar-brand.fixed-theme,
+.navbar-container.fixed-theme,
+.navbar.navbar-fixed-top.fixed-theme,
+.navbar-brand,
+.navbar-container{
+    transition: 0.8s;
+    -webkit-transition:  0.8s;
+}
+
 .navbar{
 	background-color: #fff;
     min-height: 55px;
     box-shadow: 0 1px 6px rgba(57,73,76,.35);
+}
+.nav .active a{
+	background-color: rgba(255,255,255,0) !important;
 }
 .navbar li a{
 	padding-right: 25px !important;
@@ -164,10 +204,6 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
 }
 .home a{
 	color: white;
-	background-color: #337ab7;
-	&:hover{
-		background-color: #2e6da4;
-	}
 }
 .home p{
 	text-align: center;
